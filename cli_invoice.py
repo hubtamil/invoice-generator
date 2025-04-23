@@ -1,21 +1,16 @@
-from fpdf import FPDF
 from datetime import datetime
+from fpdf import FPDF
 import os
 
-# Make sure 'invoices' folder exists
-if not os.path.exists("invoices"):
-    os.makedirs("invoices")
-
-# Function to generate invoice PDF
 def generate_invoice(client_name, service, rate, hours):
     total = rate * hours
     file_name = f"invoices/{client_name.replace(' ', '_')}_invoice.pdf"
-    
+
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", 'B', 16)
     pdf.cell(200, 10, txt="INVOICE", ln=True, align="C")
-    
+
     pdf.set_font("Arial", size=12)
     pdf.cell(200, 10, txt=f"Date: {datetime.now().strftime('%Y-%m-%d')}", ln=True, align="C")
     pdf.ln(10)
@@ -27,10 +22,12 @@ def generate_invoice(client_name, service, rate, hours):
     pdf.set_font("Arial", 'B', 12)
     pdf.cell(200, 10, txt=f"Total Amount: ${total:.2f}", ln=True)
 
+    if not os.path.exists("invoices"):
+        os.makedirs("invoices")
+
     pdf.output(file_name)
     print(f"\n✅ Invoice generated: {file_name}")
 
-# --- Main Program ---
 if __name__ == "__main__":
     print("=== Invoice Generator ===")
     client = input("Client Name: ")
@@ -39,21 +36,3 @@ if __name__ == "__main__":
     hours = float(input("Hours Worked: "))
 
     generate_invoice(client, service, rate, hours)
-
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello from Flask!"
-
-if __name__ == '__main__':
-    app.run(debug=True)  # Ensure debug is True for local development
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello from Flask on Render! 🎉"
-
