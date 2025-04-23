@@ -178,4 +178,47 @@ def generate_invoice_route():
 
 if __name__ == '__main__':
     app.run(debug=True)
+from flask import Flask, render_template
+from flask_mail import Mail, Message
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Configure Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Use Gmail's SMTP server
+app.config['MAIL_PORT'] = 587  # TLS
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'your-email@gmail.com'  # Your email address
+app.config['MAIL_PASSWORD'] = 'your-email-password'  # Your email password or app password for Gmail with 2FA
+app.config['MAIL_DEFAULT_SENDER'] = 'your-email@gmail.com'
+
+mail = Mail(app)
+
+# Route to send email
+@app.route('/')
+def send_email():
+    try:
+        # Create a message object
+        msg = Message("Hello from Flask-Mail", recipients=["recipient@example.com"])
+        msg.body = "This is a test email sent from Flask using Flask-Mail!"
+        
+        # Send the email
+        mail.send(msg)
+        return 'Email sent successfully!'
+    except Exception as e:
+        return f"Error: {e}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello from Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
