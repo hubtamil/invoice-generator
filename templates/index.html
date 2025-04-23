@@ -1,107 +1,58 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Invoice Generator</h1>
-    <form action="/generate" method="POST">
-        <label for="client">Client Name:</label>
-        <input type="text" id="client" name="client" required><br><br>
-
-        <label for="service">Service Description:</label>
-        <input type="text" id="service" name="service" required><br><br>
-
-        <label for="rate">Rate per Hour ($):</label>
-        <input type="text" id="rate" name="rate" required><br><br>
-
-        <label for="hours">Hours Worked:</label>
-        <input type="text" id="hours" name="hours" required><br><br>
-
-        <label for="tax_rate">Tax Rate (%):</label>
-        <input type="text" id="tax_rate" name="tax_rate" required><br><br>
-
-        <label for="discount">Discount (%):</label>
-        <input type="text" id="discount" name="discount" required><br><br>
-
-        <input type="submit" value="Generate Invoice">
-    </form>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Invoice Generator</title>
-</head>
-<body>
-    <h1>Generate Invoice</h1>
-    <form action="/generate" method="post">
-        <label>Client Name:</label><br>
-        <input type="text" name="client" required><br><br>
-
-        <label>Service Description:</label><br>
-        <input type="text" name="service" required><br><br>
-
-        <label>Rate per Hour ($):</label><br>
-        <input type="number" step="0.01" name="rate" required><br><br>
-
-        <label>Hours Worked:</label><br>
-        <input type="number" step="0.01" name="hours" required><br><br>
-
-        <input type="submit" value="Generate Invoice">
-    </form>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Invoice Generator</h1>
-        <form method="POST" action="/generate_invoice">
-            <div class="mb-3">
-                <label for="client_name" class="form-label">Client Name</label>
-                <input type="text" class="form-control" id="client_name" name="client_name" required>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+    <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-center mb-6">Invoice Generator 🧾</h1>
+        <form action="/generate" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Client Name</label>
+                <input type="text" name="client_name" class="w-full border border-gray-300 rounded p-2" required>
             </div>
-            <div class="mb-3">
-                <label for="service" class="form-label">Service Description</label>
-                <input type="text" class="form-control" id="service" name="service" required>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Select Services</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" name="services" value="Web Design">
+                        <span>Web Design</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" name="services" value="Logo Design">
+                        <span>Logo Design</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" name="services" value="SEO Optimization">
+                        <span>SEO Optimization</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" name="services" value="Consultation">
+                        <span>Consultation</span>
+                    </label>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="rate" class="form-label">Rate per Hour ($)</label>
-                <input type="number" class="form-control" id="rate" name="rate" required step="0.01">
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Rate per Hour ($)</label>
+                <input type="number" step="0.01" name="rate" class="w-full border border-gray-300 rounded p-2" required>
             </div>
-            <div class="mb-3">
-                <label for="hours" class="form-label">Hours Worked</label>
-                <input type="number" class="form-control" id="hours" name="hours" required step="0.01">
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Hours Worked</label>
+                <input type="number" step="0.1" name="hours" class="w-full border border-gray-300 rounded p-2" required>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Client Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Generate Invoice</button>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-xl transition">
+                Generate Invoice
+            </button>
         </form>
     </div>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Sender</title>
-</head>
-<body>
-    <h1>Welcome to Flask Email Sender</h1>
-    <p>Click below to send a test email:</p>
-    <a href="/">Send Test Email</a>
-</body>
-</html>
+
 
