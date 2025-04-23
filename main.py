@@ -47,3 +47,13 @@ if __name__ == "__main__":
 
     generate_invoice(client, service, rate, hours, logo_path)
 
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Hello from Flask app deployed on Render! 🎉'
+
+if __name__ == '__main__':
+    app.run()
